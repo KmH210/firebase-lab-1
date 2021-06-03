@@ -1,0 +1,9 @@
+.ShoutOutList {
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: rgba(169, 243, 140, 0.651);
+}
+.ShoutOutList h1{
+    text-align: center;
+}

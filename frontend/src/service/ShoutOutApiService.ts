@@ -10,10 +10,10 @@ export function readAllShoutOuts():Promise<ShoutOuts[]> {
   return axios.get(baseUrl).then(res => res.data);
 }
 
-// export function createStudent(student: Student):Promise<Student> {
-//   return axios.post(baseUrl, student).then(res => res.data);
-// }
+export function createShoutOut(shoutOut: ShoutOuts):Promise<ShoutOuts> {
+  return axios.post(baseUrl, shoutOut).then(res => res.data);
+}
 
-// export function deleteStudent(studentId: string):Promise<void> {
-//   return axios.delete(`${baseUrl}/${encodeURIComponent(studentId)}`);
-// }
+export function deleteShoutOut(shoutOutId: string):Promise<void> {
+  return axios.delete(`${baseUrl}/${encodeURIComponent(shoutOutId)}`);
+}

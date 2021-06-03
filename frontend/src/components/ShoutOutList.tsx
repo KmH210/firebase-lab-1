@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ShoutOut from "../model/shoutOuts";
-import { readAllShoutOuts } from "../service/ShoutOutApiService";
+import { readAllShoutOuts, deleteShoutOut, createShoutOut } from "../service/ShoutOutApiService";
+import ShoutOutCard from "./ShoutOutCard";
+import ShoutOutForm from "./ShoutOutForm";
+import './ShoutOutList.css';
 
 function ShoutOutList() {
     const[shoutOuts, setShoutOuts] = useState<ShoutOut[]>([]);
@@ -17,17 +20,29 @@ function loadShoutOuts() {
         setShoutOutsLoaded(true);
     });
 }
+
+function handleAddShoutOut(shoutOut: ShoutOut): void {
+    createShoutOut(shoutOut).then(loadShoutOuts)
+}
+
+function handleDeleteShoutOut(shoutOutId: string): void{
+    deleteShoutOut(shoutOutId).then(loadShoutOuts);
+}
+
+
 return (
     <div className="ShoutOutList">
+    <h1>Shout Outs</h1>
         { !shoutOutsLoaded ?
             <p className="ShoutOutList_message">Loading...</p>
             : shoutOuts.length === 0?
             <p className="ShoutOutList_message">No Shout Outs</p>
             :
             shoutOuts.map(eachShoutOut =>
-            <div key={eachShoutOut._id}> To: {eachShoutOut.to} From: {eachShoutOut.from} Message: {eachShoutOut.message}</div>
-            )
-        }
+            <ShoutOutCard key={eachShoutOut._id} shoutOut= {eachShoutOut} onDelete={() => handleDeleteShoutOut(eachShoutOut._id!)}
+            />)
+      }
+        <ShoutOutForm onSubmit={handleAddShoutOut}/>
     </div>
 )
 

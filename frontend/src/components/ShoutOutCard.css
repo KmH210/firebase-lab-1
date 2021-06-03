@@ -1,0 +1,20 @@
+.ShoutOutCard {
+    border: 2px solid black;
+    margin: 20px;
+    padding: 10px;
+    background-color: white;
+}
+
+.ShoutOutTo h3{
+    font-size: 20px;
+}
+
+.ShoutOutFrom {
+    font-size: 14px;
+}
+
+button.Delete {
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 4px;
+}
