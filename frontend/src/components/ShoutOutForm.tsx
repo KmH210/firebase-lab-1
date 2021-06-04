@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react';
+
 import ShoutOut from '../model/shoutOuts';
 import "./ShoutOutForm.css";
 
@@ -7,7 +8,6 @@ interface Props {
 }
 
 function ShoutOutForm({onSubmit}: Props) {
-
     // const [ display, setDisplay ] = useState("");
     const [ to, setTo ] = useState("");
     const [ from, setFrom ] = useState("");

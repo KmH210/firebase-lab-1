@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ShoutOut from "../model/shoutOuts";
 import { readAllShoutOuts, deleteShoutOut, createShoutOut } from "../service/ShoutOutApiService";
+import Header from "./Header";
 import ShoutOutCard from "./ShoutOutCard";
 import ShoutOutForm from "./ShoutOutForm";
 import './ShoutOutList.css';
@@ -32,6 +33,7 @@ function handleDeleteShoutOut(shoutOutId: string): void{
 
 return (
     <div className="ShoutOutList">
+        <Header/>
     <h1>Shout Outs</h1>
         { !shoutOutsLoaded ?
             <p className="ShoutOutList_message">Loading...</p>
