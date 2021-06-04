@@ -34,7 +34,7 @@ function handleDeleteShoutOut(shoutOutId: string): void{
 return (
     <div className="ShoutOutList">
         <Header/>
-    <h1>Shout Outs</h1>
+    <h1>Shout Outs PRACTICE TRIAL</h1>
         { !shoutOutsLoaded ?
             <p className="ShoutOutList_message">Loading...</p>
             : shoutOuts.length === 0?
