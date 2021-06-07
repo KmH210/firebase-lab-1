@@ -10,6 +10,12 @@ export function readAllShoutOuts():Promise<ShoutOuts[]> {
   return axios.get(baseUrl).then(res => res.data);
 }
 
+export function readShoutOutsByPerson (to: string):Promise<ShoutOuts[]> {
+  return axios.get(baseUrl, {
+    params: {to: to}
+  }).then(res => res.data);
+}
+
 export function createShoutOut(shoutOut: ShoutOuts):Promise<ShoutOuts> {
   return axios.post(baseUrl, shoutOut).then(res => res.data);
 }
