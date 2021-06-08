@@ -1,4 +1,6 @@
-import { FormEvent, useState } from 'react';
+import { useRef } from 'react';
+import { FormEvent, useState, useContext } from 'react';
+import { AuthContext } from '../context/auth-context';
 
 import ShoutOut from '../model/shoutOuts';
 import "./ShoutOutForm.css";
@@ -10,13 +12,19 @@ interface Props {
 function ShoutOutForm({onSubmit}: Props) {
     // const [ display, setDisplay ] = useState("");
     const [ to, setTo ] = useState("");
-    const [ from, setFrom ] = useState("");
     const [ message, setMessage ] = useState("");
+    const {user} = useContext(AuthContext)
+    const photoInputRef = useRef<HTMLInputElement>(null);
 
     function handleSubmit(e: FormEvent): void {
+        const files = photoInputRef.current?.files;
+        if(files && files[0]){
+            const photoFile = files[0];
+            console.log(photoFile);
+        }
         const shoutOut: ShoutOut = {
             to: to,
-            from: from,
+            from: user?.displayName ?? "anonymous",
             message: message
         }
         e.preventDefault();
@@ -24,7 +32,6 @@ function ShoutOutForm({onSubmit}: Props) {
 
         //clear form
         setTo("");
-        setFrom("");
         setMessage("");
     }
 
@@ -39,7 +46,8 @@ function ShoutOutForm({onSubmit}: Props) {
                 </p>
                 <p>
                     <label>From<br></br>
-                    <input className="from" type="text" value={from} onChange={e => setFrom(e.target.value)}></input>
+                    {user?.displayName}
+                    {/* <input className="from" type="text" value={from} onChange={e => setFrom(e.target.value)}></input> */}
                     </label>
                 </p>
                 <p>
